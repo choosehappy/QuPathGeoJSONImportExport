@@ -2,9 +2,9 @@
 Set annotationMeasurements = []
 
 getDetectionObjects().each{it.getMeasurementList().getMeasurementNames().each{annotationMeasurements << it}}
-println(annotationMeasurements)
+//println(annotationMeasurements)
 
-//annotationMeasurements.each{ removeMeasurements(qupath.lib.objects.PathCellObject, it);}
+annotationMeasurements.each{ removeMeasurements(qupath.lib.objects.PathCellObject, it);}
 
 
 // write to file
