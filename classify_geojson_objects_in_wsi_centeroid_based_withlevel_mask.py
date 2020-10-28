@@ -52,9 +52,6 @@ import torch
 from torch import nn
 from torchsummary import summary
 import numpy as np
-from albumentations import *
-from albumentations.pytorch import ToTensor
-import ttach as tta
 import cv2
 
 device = torch.device('cuda')
@@ -63,12 +60,12 @@ def divide_batch(l, n):
     for i in range(0, l.shape[0], n):  
         yield l[i:i + n,::] 
         
-    
-model = LoadYourModelHere().to(device)    
-checkpoint = torch.load(model_fname, map_location=lambda storage, loc: storage)  # load checkpoint to CPU and then put to device https://discuss.pytorch.org/t/saving-and-loading-torch-models-on-2-machines-with-different-number-of-gpu-devices/6666
-model.load_state_dict(checkpoint["model_dict"])
-model.eval()
-summary(model, (3, 32, 32))
+#--- Load your model here    
+#model = LoadYourModelHere().to(device)    
+#checkpoint = torch.load(model_fname, map_location=lambda storage, loc: storage)  # load checkpoint to CPU and then put to device https://discuss.pytorch.org/t/saving-and-loading-torch-models-on-2-machines-with-different-number-of-gpu-devices/6666
+#model.load_state_dict(checkpoint["model_dict"])
+#model.eval()
+#summary(model, (3, 32, 32))
 
 # +
 with open(json_fname) as f:
