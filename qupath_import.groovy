@@ -4,8 +4,8 @@
 
 def gson = GsonTools.getInstance(true)
 
-def json = new File("D:/research/chuv_alex_mel/1l1_2rois_annotated.json").text
-println json
+def json = new File("d:/1L1_nuclei_anno.json").text
+//println json
 
 
 // Read the annotations
