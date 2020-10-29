@@ -97,7 +97,7 @@ int_coords = lambda x: np.array(x).round().astype(np.int32)
 
 # +
 for y in tqdm(range(0,osh.level_dimensions[0][1],round(tilesize * scalefactor)), desc="outer" , leave=False):
-    for x in tqdm(range(0,osh.level_dimensions[0][0],round(tilesize * scalefactor)), desc=f"innter {y}", leave=False):            
+    for x in tqdm(range(0,osh.level_dimensions[0][0],round(tilesize * scalefactor)), desc=f"inner {y}", leave=False):            
 
         tilepoly = Polygon([[x,y],[x+tilesize*scalefactor,y],
                             [x+tilesize*scalefactor,y+tilesize*scalefactor],
