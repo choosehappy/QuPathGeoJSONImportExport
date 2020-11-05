@@ -14,7 +14,13 @@ def annotations = getDetectionObjects()
 //println gson.toJson(annotations) // you can check here but this will be HUGE and take a long time to parse
 
 
-File file = new File('d:/1L1_nuclei.json')
+// automatic output filename, otherwise set explicitly
+String imageLocation = getCurrentImageData().getServer().getPath()
+outfname = imageLocation.split("file:/")[1]+".json"
+
+
+
+File file = new File(outfname)
 file.withWriter('UTF-8') {
     gson.toJson(annotations,it)
 }
