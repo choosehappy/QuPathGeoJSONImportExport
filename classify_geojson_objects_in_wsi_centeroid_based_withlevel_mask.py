@@ -53,6 +53,7 @@ from torch import nn
 from torchsummary import summary
 import numpy as np
 import cv2
+import gzip
 
 device = torch.device('cuda')
 
@@ -68,8 +69,13 @@ def divide_batch(l, n):
 #summary(model, (3, 32, 32))
 
 # +
-with open(json_fname) as f:
-    allobjects = geojson.load(f)
+
+if json_fname.endswith(".gz"):
+    with gzip.GzipFile(json_fname, 'r') as f:
+        allobjects = geojson.loads(f.read(), encoding= 'ascii')
+else:
+    with open(json_fname) as f:
+        allobjects = geojson.load(f)
 
 print("done loading")
 # -
@@ -169,8 +175,13 @@ for y in tqdm(range(0,osh.level_dimensions[0][1],round(tilesize * scalefactor)),
 # makeoutput()
 # -
 
-with open(json_annotated_fname, 'w') as outfile:
-    geojson.dump(allobjects,outfile)
+if json_annotated_fname.endswith(".gz"):
+    with gzip.open(json_annotated_fname, 'wt', encoding="ascii") as zipfile:
+        geojson.dump(allobjects, zipfile)
+else:
+    with open(json_annotated_fname, 'w') as outfile:
+        geojson.dump(allobjects,outfile)
+
 
 
 # +
